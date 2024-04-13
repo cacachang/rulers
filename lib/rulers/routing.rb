@@ -6,6 +6,11 @@ module Rulers
       cont = cont.capitalize
       cont += "Controller"
 
+      begin Object.const_get(cont)
+      rescue NameError => error
+        return [nil, nil]
+      end
+
       [Object.const_get(cont), action]
     end
   end
